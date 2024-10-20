@@ -6,52 +6,32 @@ const inputWindow = document.querySelector('#inputWindow');
 function calculation(sign) {
     if (sign === '=') {
         let result = inputWindow.value;
-            switch (operation) {
-                case '+':
-                result = lastOperand + parseInt(inputWindow.value);
-                operation = 'calc';
-                lastOperand = 0;
-                inputWindow.value = result;
-                break;
-            case '-':
-                result = lastOperand - parseInt(inputWindow.value);
-                operation = 'calc';
-                lastOperand = 0;
-                inputWindow.value = result;
-                break;
-            case '/':
-                result = lastOperand / parseInt(inputWindow.value);
-                operation = 'calc';
-                lastOperand = 0;
-                inputWindow.value = result;
-                break;
-            default:
-                operation = 'calc';
-                lastOperand = 0;
-                inputWindow.value = result;
-            }
-    } else {
-        switch (operation) {
-            case '+':
-                lastOperand += parseInt(inputWindow.value);
-                operation = sign;
-                inputWindow.value = '';
-                break;
-            case '-':
-                lastOperand -= parseInt(inputWindow.value);
-                operation = sign;
-                inputWindow.value = '';
-                break;
-            case '/':
-                lastOperand /= parseInt(inputWindow.value);
-                operation = sign;
-                inputWindow.value = '';
-                break;
-            default:
-            operation = sign;
-            lastOperand = parseInt(inputWindow.value);
-            inputWindow.value = '';
+        if (operation === '+') {
+            result = lastOperand + parseInt(inputWindow.value);
+        } else if (operation === '-') {
+            result = lastOperand - parseInt(inputWindow.value);
+        } else if (operation === '*') {
+            result = lastOperand * parseInt(inputWindow.value);
+        } else if (operation === '/') {
+            result = lastOperand / parseInt(inputWindow.value);
         }
+        operation = 'calc';
+        lastOperand = 0;
+        inputWindow.value = result;
+    } else {
+        if (operation === '+') {
+            lastOperand += parseInt(inputWindow.value);
+        } else if (operation === '-') {
+            lastOperand -= parseInt(inputWindow.value);
+        } else if (operation === '*') {
+            lastOperand *= parseInt(inputWindow.value);
+        } else if (operation === '/') {
+            lastOperand /= parseInt(inputWindow.value);
+        } else {
+            lastOperand = parseInt(inputWindow.value);
+        }
+        operation = sign;
+        inputWindow.value = '';
     }
 }
 
@@ -81,6 +61,8 @@ document.querySelector('#btn_sum').addEventListener('click', (e) => calculation(
 document.querySelector('#btn_def').addEventListener('click', (e) => calculation(e.target.textContent))
 
 document.querySelector('#btn_div').addEventListener('click', (e) => calculation(e.target.textContent))
+
+document.querySelector('#btn_mult').addEventListener('click', (e) => calculation(e.target.textContent))
 
 document.querySelector('#btn_calc').addEventListener('click', (e) => calculation(e.target.textContent))
 
