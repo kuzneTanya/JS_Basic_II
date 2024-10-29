@@ -2,3 +2,15 @@
     height: 100vh;
     font-family: 'Open Sans', monospace;
 }
+
+.card {
+    width: fit-content;
+}
+
+.btns {
+    display: flex;
+}
+
+.btn {
+    margin: 0 .5rem;
+}
