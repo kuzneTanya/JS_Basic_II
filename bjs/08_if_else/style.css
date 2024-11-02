@@ -9,8 +9,26 @@
 
 .btns {
     display: flex;
+    justify-content: center;
 }
 
 .btn {
     margin: 0 .5rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+#minValue {
+    text-align: start;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#maxValue {
+    text-align: end;
+    margin-right: 0;
+    padding-right: 0;
 }
