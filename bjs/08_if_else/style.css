@@ -1,10 +1,12 @@
 .game-card {
     height: 100vh;
     font-family: 'Open Sans', monospace;
+    display: flex;
 }
 
 .card {
     width: fit-content;
+    justify-self: center;
 }
 
 .btns {
@@ -16,19 +18,18 @@
     margin: 0 .5rem;
 }
 
-.card-header {
-    display: flex;
-    align-items: center;
-}
-
-#minValue {
+#minValueBtn {
     text-align: start;
     margin-left: 0;
     padding-left: 0;
 }
 
-#maxValue {
+#maxValueBtn {
     text-align: end;
     margin-right: 0;
     padding-right: 0;
+}
+
+.inputValue {
+    display: flex;
 }

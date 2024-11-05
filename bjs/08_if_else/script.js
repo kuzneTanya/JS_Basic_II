@@ -77,8 +77,8 @@ function randomAnswerPhrase() {
 }
 
 function startTheGame() {
-    minValue = parseInt(prompt('Минимальное знание числа для игры','0'));
-    maxValue = parseInt(prompt('Максимальное знание числа для игры','100'));
+    minValue = parseInt(document.querySelector('#minValue').value);
+    maxValue = parseInt(document.querySelector('#maxValue').value);
     if (minValue >= maxValue) {
         alert(`Попробуйте ещё раз. Минимальное значение должно быть меньше максимального`);
         gameRun = false;
@@ -93,7 +93,7 @@ function startTheGame() {
     } else {
         minValue = (minValue < -999) ? -999 : minValue;
         maxValue = (maxValue > 999) ? 999 : maxValue;
-        alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+        //alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
         gameRun = true;
     }
     answerNumber = Math.floor((minValue + maxValue) / 2);
@@ -103,13 +103,12 @@ function startTheGame() {
     randomAnswerPhrase();
 }
 
-startTheGame();
+document.querySelector('#btnStart').addEventListener('click', startTheGame);
 
 document.querySelector('#btnRetry').addEventListener('click', function () {
     orderNumber = 0;
     orderNumberField.innerText = orderNumber;
-    answerField.innerText = `Загадайте число\n\u{1F609}`;
-    startTheGame();
+    answerField.innerText = `Введите минимальное и максимальное значения и загадайте число\n\u{1F609}`;
 })
 
 document.querySelector('#btnOver').addEventListener('click', function () {
@@ -124,6 +123,7 @@ document.querySelector('#btnOver').addEventListener('click', function () {
             gameRun = false;
         } else {
             minValue = answerNumber  + 1;
+            document.querySelector('#minValue').value = minValue;
             answerNumber = Math.floor((minValue + maxValue) / 2);
             answerNumberText = answerNumberToText(answerNumber);
             orderNumber++;
@@ -144,6 +144,7 @@ document.querySelector('#btnLess').addEventListener('click', function () {
             gameRun = false;
         } else {
             maxValue = answerNumber - 1;
+            document.querySelector('#maxValue').value = maxValue;
             answerNumber = Math.floor((minValue + maxValue) / 2);
             answerNumberText = answerNumberToText(answerNumber);
             orderNumber++;
