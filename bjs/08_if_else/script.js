@@ -11,14 +11,18 @@ const orderNumberField = document.querySelector('#orderNumberField');
 const answerField = document.querySelector('#answerField');
 
 function answerNumberToText(num) {
-    let result;
+    let result = '';
     let hundreds = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
     let dozens = ['', 'десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяноста'];
     let tenToTwelve = ['десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать']
     let digits = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
+    if (num < 0) {
+        result = 'минус ';
+        num = parseInt(num.toString().replace('-', ''));
+    }
     num = num % 1000;
     if (num.toString().length == 3) {
-        result = hundreds[num.toString()[0]];
+        result += hundreds[num.toString()[0]];
         num = num % 100;
         if (num.toString().length == 2) {
             if (num.toString()[0] == 1) {
@@ -31,13 +35,13 @@ function answerNumberToText(num) {
                 }
             }
         } else {
-            result += digits[num];
+            result += ' ' + digits[num];
         }
     } else if (num.toString().length == 2) {
         if (num.toString()[0] == 1) {
-            result = tenToTwelve[num.toString()[1]];
+            result += tenToTwelve[num.toString()[1]];
         } else {
-            result = dozens[num.toString()[0]];
+            result += dozens[num.toString()[0]];
             num = num % 10;
             if (num != 0) {
                 result += ' ' + digits[num];
@@ -47,7 +51,7 @@ function answerNumberToText(num) {
         if (num == 0) {
             result = 0;
         } else {
-            result = digits[num];
+            result += digits[num];
         }
     }
     if (result.length > 20) {
@@ -93,6 +97,8 @@ function startTheGame() {
     } else {
         minValue = (minValue < -999) ? -999 : minValue;
         maxValue = (maxValue > 999) ? 999 : maxValue;
+        document.querySelector('#minValue').value = minValue;
+        document.querySelector('#maxValue').value = maxValue;
         gameRun = true;
     }
     answerNumber = Math.floor((minValue + maxValue) / 2);
