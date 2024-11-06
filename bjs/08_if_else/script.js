@@ -93,7 +93,6 @@ function startTheGame() {
     } else {
         minValue = (minValue < -999) ? -999 : minValue;
         maxValue = (maxValue > 999) ? 999 : maxValue;
-        //alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
         gameRun = true;
     }
     answerNumber = Math.floor((minValue + maxValue) / 2);
@@ -112,7 +111,6 @@ document.querySelector('#btnRetry').addEventListener('click', function () {
 })
 
 document.querySelector('#btnOver').addEventListener('click', function () {
-    if (gameRun){
         if (minValue === maxValue){
             phraseRandom = Math.round(Math.random());
             answerPhrase = (phraseRandom === 1) ?
@@ -123,29 +121,26 @@ document.querySelector('#btnOver').addEventListener('click', function () {
             gameRun = false;
         } else {
             minValue = answerNumber  + 1;
-            document.querySelector('#minValue').value = minValue;
             answerNumber = Math.floor((minValue + maxValue) / 2);
             answerNumberText = answerNumberToText(answerNumber);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             randomAnswerPhrase();
         }
-    }
 })
 
 document.querySelector('#btnLess').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue){
-            const phraseRandom = Math.round(Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
+            phraseRandom = Math.round(Math.random());
+            answerPhrase = (phraseRandom === 1) ?
                 `Вы загадали неправильное число!\n\u{1F914}` :
                 `Я сдаюсь..\n\u{1F92F}`;
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
             maxValue = answerNumber - 1;
-            document.querySelector('#maxValue').value = maxValue;
-            answerNumber = Math.floor((minValue + maxValue) / 2);
+            answerNumber = Math.ceil((minValue + maxValue) / 2);
             answerNumberText = answerNumberToText(answerNumber);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
