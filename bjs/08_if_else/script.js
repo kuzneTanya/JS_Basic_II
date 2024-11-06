@@ -121,6 +121,7 @@ document.querySelector('#btnOver').addEventListener('click', function () {
             gameRun = false;
         } else {
             minValue = answerNumber  + 1;
+            document.querySelector("#minValue").value = minValue;
             answerNumber = Math.floor((minValue + maxValue) / 2);
             answerNumberText = answerNumberToText(answerNumber);
             orderNumber++;
@@ -140,6 +141,7 @@ document.querySelector('#btnLess').addEventListener('click', function () {
             gameRun = false;
         } else {
             maxValue = answerNumber - 1;
+            document.querySelector("#maxValue").value = maxValue;
             answerNumber = Math.ceil((minValue + maxValue) / 2);
             answerNumberText = answerNumberToText(answerNumber);
             orderNumber++;
