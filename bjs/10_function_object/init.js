@@ -2,6 +2,9 @@
 window.onload = function()
 {
     const initPerson = personGenerator.getPerson();
-    document.getElementById('firstNameOutput').innerText = initPerson.firstName;
+    document.querySelector('#surnameOutput').innerHTML = initPerson.surname;
+    document.querySelector('#firstNameOutput').innerHTML = initPerson.firstName;
+    document.querySelector('#genderOutput').innerHTML = initPerson.gender;
+    document.querySelector('#birthDateOutput').innerHTML = initPerson.dateOfBirth;
 };
 
