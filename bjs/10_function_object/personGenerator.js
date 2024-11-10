@@ -80,6 +80,23 @@ const personGenerator = {
             "id_10": "бизнесвумен"
         }  
     }`,
+    monthOfBirthJson: `{
+        "count": 12,
+        "list": {
+            "id_1": "января",
+            "id_2": "февраля",
+            "id_3": "марта",
+            "id_4": "апреля",
+            "id_5": "мая",
+            "id_6": "июня",
+            "id_7": "июля",
+            "id_8": "августа",
+            "id_9": "сентября",
+            "id_10": "октября",
+            "id_11": "ноября",
+            "id_12": "декабря"
+        }
+    }`,
 
     GENDER_MALE: 'Мужчина',
     GENDER_FEMALE: 'Женщина',
@@ -107,7 +124,13 @@ const personGenerator = {
     },
 
     randomDateOfBirth: function() {
-        return this.randomIntNumber(2024, 1924);
+        const month = this.randomValue(this.monthOfBirthJson);
+        const year = this.randomIntNumber(2024, 1924);
+        if (month === "февраля") {
+            return (year%4 === 0) ? this.randomIntNumber(29, 1) + ' ' + month + ' ' + year : this.randomIntNumber(28, 1) + ' ' + month + ' ' + year;
+        } else if (month === "января" || month === "марта" || month === "мая" || month === "июля" || month === "августа" || month === "октября" || month === "декабря") 
+            return this.randomIntNumber(31, 1) + ' ' + month + ' ' + year;
+        else return this.randomIntNumber(30, 1) + ' ' + month + ' ' + year;
     },
 
     randomLastName: function(gender) {
