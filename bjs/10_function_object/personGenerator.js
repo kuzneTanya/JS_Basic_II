@@ -1,6 +1,6 @@
 const personGenerator = {
     surnameJson: `{  
-        "count": 15,
+        "count": 16,
         "list": {
             "id_1": "Иванов",
             "id_2": "Смирнов",
@@ -50,6 +50,36 @@ const personGenerator = {
             "id_10": "Марина"
         }
     }`,
+    jobMaleJson: `{
+        "count": 10,
+        "list": {
+            "id_1": "слесарь",
+            "id_2": "сантехник",
+            "id_3": "инженер",
+            "id_4": "учитель",
+            "id_5": "программист",
+            "id_6": "музыкант",
+            "id_7": "физик",
+            "id_8": "водитель",
+            "id_9": "шахтер",
+            "id_10": "бизнесмен"
+        }
+    }`,
+    jobFemaleJson: `{
+        "count": 10,
+        "list": {
+            "id_1": "модель",
+            "id_2": "актриса",
+            "id_3": "инженер",
+            "id_4": "учитель",
+            "id_5": "продавец",
+            "id_6": "горничная",
+            "id_7": "физик",
+            "id_8": "программист",
+            "id_9": "бухгалтер",
+            "id_10": "бизнесвумен"
+        }  
+    }`,
 
     GENDER_MALE: 'Мужчина',
     GENDER_FEMALE: 'Женщина',
@@ -63,35 +93,35 @@ const personGenerator = {
     },
 
     randomFirstName: function(gender) {
-        if (gender == this.GENDER_MALE) {
-            return this.randomValue(this.firstNameMaleJson);
-        } else {
-            return this.randomValue(this.firstNameFemaleJson);
-        }
-
+        return (gender == this.GENDER_MALE) ? this.randomValue(this.firstNameMaleJson) : this.randomValue(this.firstNameFemaleJson);
     },
 
 
     randomSurname: function(gender) {
-        if (gender === this.GENDER_MALE)
-            return this.randomValue(this.surnameJson);
-        else {
-            return this.randomValue(this.surnameJson) + 'а';
-        }
-
+        return (gender == this.GENDER_MALE) ? this.randomValue(this.surnameJson) : this.randomValue(this.surnameJson) + 'а';
     },
 
     randomGender: function() {
         const gender = this.randomIntNumber();
-        if (gender === 1)
-            return this.GENDER_MALE;
-        else return this.GENDER_FEMALE; 
+        return (gender === 1) ? this.GENDER_MALE : this.GENDER_FEMALE;
     },
 
     randomDateOfBirth: function() {
-        return this.randomIntNumber(1924, 2024);
+        return this.randomIntNumber(2024, 1924);
     },
 
+    randomLastName: function(gender) {
+        const name = this.randomValue(this.firstNameMaleJson);
+        if (name[name.length-1] === 'й') {
+            return (gender === this.GENDER_MALE) ? name.replace('й', '') + 'евич' : name.replace('й', '') + 'евна';
+        } else if (name[name.length-1] === 'а') {
+            return (gender === this.GENDER_MALE) ? name.replace('а', '') + 'ович' : name.replace('а', '') + 'овна';
+        } else return (gender === this.GENDER_MALE) ? name + 'ович' : name + 'овна';
+    },
+
+    randomJob: function(gender) {
+        return (gender == this.GENDER_MALE) ? this.randomValue(this.jobMaleJson) : this.randomValue(this.jobFemaleJson);
+    },
 
     getPerson: function () {
         this.person = {};
@@ -99,6 +129,8 @@ const personGenerator = {
         this.person.firstName = this.randomFirstName(this.person.gender);
         this.person.dateOfBirth = this.randomDateOfBirth();
         this.person.surname = this.randomSurname(this.person.gender);
+        this.person.lastName = this.randomLastName(this.person.gender);
+        this.person.job = this.randomJob(this.person.gender);
         return this.person;
     }
 };

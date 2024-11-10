@@ -6,5 +6,7 @@ window.onload = function()
     document.querySelector('#firstNameOutput').innerHTML = initPerson.firstName;
     document.querySelector('#genderOutput').innerHTML = initPerson.gender;
     document.querySelector('#birthDateOutput').innerHTML = initPerson.dateOfBirth;
+    document.querySelector('#lastNameOutput').innerHTML = initPerson.lastName;
+    document.querySelector('#jobOutput').innerHTML = initPerson.job;
 };
 
