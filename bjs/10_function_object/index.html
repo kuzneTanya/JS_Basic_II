@@ -14,22 +14,26 @@
 <div class="container">
     <div class="row game-card align-items-center">
         <div class="col col-md-6 offset-md-3">
-            <div class="card text-center text-bg-success">
+            <div class="card text-center text-bg-success border-dark">
                 <div class="card-header text-bg-dark">
                     <p class="m-0">Окно результатов генерации</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h3 class="card-title"><span id="surnameOutput">Генерация фамилии</span></h3>
-                            <h4><span id="firstNameOutput">Генерация имени</span> <span id="lastNameOutput">Генерация отчества</span></h4>
+                            <h3 class="card-title"><span id="surnameOutput">Нажмите кнопку "Сгенерировать", чтобы получить данные</span></h3>
+                            <h4><span id="firstNameOutput"></span> <span id="lastNameOutput"></span></h4>
                             <p>
-                                <span id="genderOutput">Генерация пола</span>,
-                                <span id="birthDateOutput">Генерация</span> года рождения
+                                <span id="genderOutput"></span>
+                                <span id="birthDateOutput"></span>
                             </p>
-                            <p class="text-dark"><span id="jobOutput">Генерация профессии</span></p>
+                            <p class="text-dark"><span id="jobOutput"></span></p>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-bg-dark">
+                    <button class="btn btn-warning" id="generate">Сгенерировать</button>
+                    <button class="btn btn-danger" id="clear">Очистить</button>
                 </div>
             </div>
         </div>
